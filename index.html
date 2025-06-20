@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgendamentoPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; /* slate-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #52525b; /* zinc-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #71717a; /* zinc-500 */
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.2",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.5.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased">
+    <div id="root"></div>
+    <script>
+      // Mock process.env.API_KEY for browser environment if not set by build tool
+      if (typeof process === 'undefined') {
+        window.process = { env: { API_KEY: 'YOUR_GEMINI_API_KEY_HERE' } };
+      } else if (!process.env || !process.env.API_KEY) {
+        process.env = { ...process.env, API_KEY: 'YOUR_GEMINI_API_KEY_HERE' };
+      }
+      // Replace 'YOUR_GEMINI_API_KEY_HERE' with your actual Gemini API Key for testing
+      // In a real deployment, this key should be managed securely and not hardcoded here.
+      // For this exercise, it's a placeholder. The app will use process.env.API_KEY.
+      if (window.process.env.API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+        console.warn('Using placeholder Gemini API Key. Replace with your actual key in index.html for geminiService to work.');
+      }
+    </script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
