@@ -75,6 +75,28 @@ yarn install
 pnpm install
 ```
 
+### Configuração do Supabase
+
+O projeto usa **Supabase** para backend, banco de dados e autenticação.
+
+**📚 Guia Completo:** [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)
+
+**Resumo rápido:**
+
+1. Crie uma conta em [supabase.com](https://supabase.com)
+2. Crie um novo projeto
+3. Execute o SQL em `supabase/schema.sql` no SQL Editor
+4. Configure as variáveis de ambiente em `.env.local`:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-publica
+SUPABASE_SERVICE_ROLE_KEY=sua-chave-servico
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+5. Pronto! Execute `npm run dev`
+
 ## 💻 Desenvolvimento
 
 ```bash
