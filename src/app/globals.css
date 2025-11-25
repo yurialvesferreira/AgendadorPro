@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Estilos base com foco em acessibilidade */
+
+  * {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+
+  html {
+    /* Permite zoom até 200% sem perda de funcionalidade */
+    @apply scroll-smooth;
+  }
+
+  body {
+    /* Contraste adequado e tipografia legível */
+    @apply text-base leading-relaxed;
+  }
+
+  /* Headings com hierarquia clara */
+  h1 {
+    @apply text-4xl font-bold mb-4 text-gray-900;
+  }
+
+  h2 {
+    @apply text-3xl font-bold mb-3 text-gray-900;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold mb-2 text-gray-900;
+  }
+
+  h4 {
+    @apply text-xl font-semibold mb-2 text-gray-900;
+  }
+
+  h5 {
+    @apply text-lg font-semibold mb-1 text-gray-900;
+  }
+
+  h6 {
+    @apply text-base font-semibold mb-1 text-gray-900;
+  }
+
+  /* Parágrafos com espaçamento adequado */
+  p {
+    @apply mb-paragraph;
+  }
+
+  /* Links acessíveis */
+  a {
+    @apply text-primary-500 underline hover:text-primary-600 focus-visible:ring-2 focus-visible:ring-primary-500;
+  }
+
+  /* Botões base */
+  button {
+    @apply min-h-touch-aa min-w-touch-aa;
+  }
+
+  /* Inputs e selects */
+  input,
+  textarea,
+  select {
+    @apply min-h-touch-aa;
+  }
+}
+
+@layer components {
+  /* Screen reader only - visível apenas para leitores de tela */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only-focusable:focus,
+  .sr-only-focusable:active {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Focus visível - nunca remover outline sem substituto */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+
+  /* Container responsivo com padding adequado */
+  .container-accessible {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Espaçamento entre elementos interativos */
+  .interactive-spacing {
+    @apply space-y-2 sm:space-y-0 sm:space-x-4;
+  }
+}
+
+@layer utilities {
+  /* Utilitários de contraste */
+  .text-high-contrast {
+    color: #1a1a1a; /* Contraste 15.8:1 com branco */
+  }
+
+  .text-medium-contrast {
+    color: #595959; /* Contraste 7.0:1 com branco */
+  }
+
+  /* Utilitários de movimento reduzido */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Utilitários de alto contraste */
+  @media (prefers-contrast: high) {
+    * {
+      border-color: currentColor !important;
+    }
+  }
+
+  /* Modo escuro com contraste adequado */
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-gray-900 text-gray-100;
+    }
+  }
+}
+
+/* Estilos para estados de erro em formulários */
+[aria-invalid="true"] {
+  @apply border-error-500 focus-visible:ring-error-500;
+}
+
+/* Estilos para elementos desabilitados */
+[disabled],
+[aria-disabled="true"] {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+/* Indicadores de loading/busy */
+[aria-busy="true"] {
+  @apply cursor-wait;
+}
+
+/* Live regions para anúncios dinâmicos */
+[role="status"],
+[role="alert"] {
+  @apply sr-only;
+}
+
+[role="status"].visible,
+[role="alert"].visible {
+  @apply not-sr-only;
+}
